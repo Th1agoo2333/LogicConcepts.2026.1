@@ -1,11 +1,13 @@
-﻿namespace OPPconcepts.backend
-{
+﻿namespace OPPconcepts.backend;
     public class Date
     {
+
+        //fields
         private int _day;
         private int _month;
         private int _year;
 
+        //constructors
         public Date()
         {
             _year = 1900;
@@ -26,32 +28,66 @@
         }  
         public int Month { 
             get => _month; 
-            set => _month = value; 
+            set => _month = ValidateMonth(value); 
         }
         public int Day { 
             get => _day;
-            set => _day = value;
-        }   
+            set => _day = ValidateDay(value);
+        }
 
+
+        //methods
         public override string ToString()
         {
-            return $"{Day}/{Month}/{Year}";
+            return $"{Year:0000}/{Month:00}/{Day}";
         }
         
         private int ValidateYear(int year)
         {
             if (year < 0 || year > 2100)
             {
-                throw new ArgumentOutOfRangeException(nameof(year), "The year must be greater than 0");
+                throw new ArgumentOutOfRangeException(nameof(year), "Year must be greathest than 0.");
             }
             return year;
         }
 
+        private int ValidateMonth(int month)
+        {
+            if (month < 1 || month > 12)
+            {
+                throw new ArgumentOutOfRangeException(nameof(month), "Month must be between 1 and 12.");
+            }
+            return month;
+        }
+
+        private int ValidateDay(int day)
+        {
+            if (day < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(day), "Day must be greathest than 0.");
+            }
+
+            if (day == 29 && Month == 2 && IsLeapYear(Year))
+            {
+                return day;
+            }
+
+            int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (day > daysInMonth[Month - 1])
+            {
+                throw new ArgumentOutOfRangeException(nameof(day), $"Day must be between 1 and {daysInMonth[Month - 1]} for month {Month}.");
+            }
+
+            return day;
+
+        }
+        
+        private bool IsLeapYear(int year)
+        {
+            return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        }
 
     }
-   
-
-}
 
 
 

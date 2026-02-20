@@ -5,4 +5,7 @@
   <Folder Name="/02/">
     <Project Path="TheGreatersNumber/TheGreatersNumber.csproj" Id="393ed816-e52c-4578-a9a7-c2ee2960be68" />
   </Folder>
+  <Folder Name="/Share/">
+    <Project Path="Share/Share.csproj" Id="110045bb-107b-4c67-b69e-8700a6a0d5d5" />
+  </Folder>
 </Solution>
