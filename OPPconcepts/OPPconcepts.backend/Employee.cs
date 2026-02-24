@@ -27,7 +27,7 @@ public abstract class Employee
     //methods
     public override string ToString()
     {
-        return $"{Id}/t{FirstName}/n/t" +
+        return $"{Id}\t{FirstName}\n\t" +
             $"Value to pay.......{GetValueToPay(),20:c2}";
     }
     
